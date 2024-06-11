@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package densitycalculator;
+
+import "google/protobuf/struct.proto";
+
+service DensityCalculatorService {
+  rpc CalculateDensity(CalculateDensityRequest) returns (CalculateDensityResponse) {}
+}
+
+message CalculateDensityRequest {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message CalculateDensityResponse {
+  bool is_residential_found = 1;
+  string residential_area = 2;
+  double residential_area_size = 3;
+
+  bool is_building_found = 4;
+  string buildings = 5;
+  double living_buildings_area = 6;
+  double non_living_buildings_area = 7;
+  double buildings_area_size = 8;
+
+  double built_percent = 9;
+
+  double buildings_density = 10;
+  double living_buildings_density = 11;
+
+  uint32 max_people = 12;
+  uint32 people_density = 13;
+  double free_area_per_person = 14;
+}
